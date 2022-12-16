@@ -1,19 +1,71 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path:'/', 
+    name:'Dashboard',
+    component: () => import ('../components/BaseDashboard.vue'),
+    children:[
+      {
+        path:'/',
+        name:'Principal',
+        component: () => import ('../views/dashboard/InicioViews.vue') 
+    
+      },
+    {
+      path:'/conocenos',
+      name:'Conocenos',
+      component: () => import ('../views/dashboard/ConocenosView.vue') 
+    },
+    {
+      path:'/charla',
+      name:'Charla',
+      component: () => import ('../views/dashboard/CharlView.vue') 
+    },
+    {
+      path:'/cronograma',
+      name:'Cronograma',
+      component: () => import ('../views/dashboard/CronogramaViews.vue') 
+    },
+    {
+      path:'/contactanos',
+      name:'Contactanos',
+      component: () => import ('../views/dashboard/ContactanosView.vue') 
+    },
+    ]
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path:'/admin',
+    name:'Admin',
+    component: () => import ('../components/BaseAdm.vue'),
+    children:[
+{
+  path:'/admin',
+  name:'Inicio',
+  component: ()=> import('../views/dashboard/InicioAdm.vue')
+},
+{
+  path:'/cronograma:adm',
+  name:'CronogramaAdm',
+  component: ()=> import('../views/dashboard/CronogramaAdm.vue')
+},
+{
+  path:'/charlas:adm',
+  name:'CharlasAdm',
+  component: ()=> import('../views/dashboard/CharlasAdm.vue')
+},
+{
+  path:'/solicitudes:adm',
+  name:'SolicitudesAdm',
+  component: ()=> import('../views/dashboard/SolicitudesAdm.vue')
+},
+{
+  path:'/usuarios:adm',
+  name:'UsuariosAdm',
+  component: ()=> import('../views/dashboard/UsuariosAdm.vue')
+},
+
+    ],
   }
 ]
 
